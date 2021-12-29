@@ -33,7 +33,7 @@ namespace API.Controllers
 
 
         [HttpPost("PostCategory")]
-        public async Task<IActionResult> PostCategory(CategoriesDto categoryDto)
+        public async Task<IActionResult> PostCategory([FromBody] CategoriesDto categoryDto)
         {
             var category = new Categories
             {
@@ -46,7 +46,7 @@ namespace API.Controllers
 
             await uow.SaveAsync();
 
-            return CreatedAtAction("GetProducts", new { id = category.CategoryID }, category);
+            return CreatedAtAction("GetCategories", new { id = category.CategoryID }, category);
         }
 
 

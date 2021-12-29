@@ -1,4 +1,5 @@
-﻿using Data_Layer.Models;
+﻿using API.DTOs;
+using Data_Layer.Models;
 
 namespace API.Interfaces
 {
@@ -6,7 +7,11 @@ namespace API.Interfaces
     {
         Task<IEnumerable<Users>> GetUsersAsync();
 
-        void AddUser(Users users);
+        Task<Users> Authenticate(string username, string password);
+
+        void Register(AccountsDto user);
+
+        Task<bool> UserAlreadyExists(string username);
 
         void DeleteUser(int id);
 

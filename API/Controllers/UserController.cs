@@ -29,12 +29,14 @@ namespace API.Controllers
                                FirstName = c.FirstName,
                                LastName = c.LastName,
                                Email = c.Email,
+                               Password = c.Password,
                                Address = c.Address,
                                Phone = c.Phone
                            };
 
             return Ok(usersDto);
         }
+
         
         [HttpDelete("DeleteUser")]
         public async Task<IActionResult> DeleteUser(int id)
@@ -44,6 +46,24 @@ namespace API.Controllers
             await uow.SaveAsync();
 
             return Ok(id);
+        }
+
+
+        [HttpPost("AddUser")]
+        public async Task<IActionResult> AddUser(AccountsDto user)
+        {
+            var name = user.FirstName + ' ' + user.LastName;
+
+            if (await uow.UserRepo.UserAlreadyExists(name))
+            {
+                return BadRequest("User already registered");
+            }
+
+            uow.UserRepo.Register(user);
+
+            await uow.SaveAsync();
+
+            return Ok("User added successfully");
         }
 
 
