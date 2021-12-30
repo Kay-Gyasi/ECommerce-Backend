@@ -57,5 +57,15 @@ namespace API.Data.Repository
         {
             return db.brands.FirstOrDefault(c => c.Title == name).BrandID;
         }
+
+        public string GetCategoryName(int id)
+        {
+            return db.categories.FirstOrDefault(a => a.CategoryID == id).Title;
+        }
+
+        public string GetBrandName(int id)
+        {
+            return db.brands.FirstOrDefault(a => a.BrandID == id).Title;
+        }
     }
 }

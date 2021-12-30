@@ -15,5 +15,9 @@ namespace API.Interfaces
         int GetCategoryId(string name);
 
         int GetBrandId(string name);
+
+        string GetCategoryName(int id);
+
+        string GetBrandName(int id);
     }
 }

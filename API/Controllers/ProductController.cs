@@ -25,8 +25,8 @@ namespace API.Controllers
                              select new ProductsDto()
                              {
                                  ProductID = c.ProductID,
-                                 CategoryName = c.Categories.Title,
-                                 BrandName = c.Brands.Title,
+                                 CategoryName = uow.ProductRepo.GetCategoryName(c.CategoryID),
+                                 BrandName = uow.ProductRepo.GetBrandName(c.BrandID),
                                  Title = c.Title,
                                  Price = c.Price,
                                  Description = c.Description
