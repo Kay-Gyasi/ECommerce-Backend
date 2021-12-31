@@ -50,7 +50,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: "AllowOrigin",
         builder =>
         {
-            builder.WithOrigins("https://localhost:4200")
+            builder.WithOrigins("https://e-commerce-kay-gyasi.vercel.app/")
             .AllowAnyOrigin()
             .AllowAnyHeader()
             .AllowAnyMethod();
@@ -62,7 +62,12 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 app.UseSwagger();
 
-app.UseSwaggerUI(c => c.DisplayOperationId());
+app.UseSwaggerUI(c => {
+
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "ECommerceApi v1");
+    c.RoutePrefix = String.Empty;
+    c.DisplayOperationId();
+    });
 
 app.UseExceptionHandler("/error");
 
